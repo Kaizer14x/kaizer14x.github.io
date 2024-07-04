@@ -39,9 +39,10 @@ social:
   links:
     # The first element serves as the copyright owner's link
     - https://github.com/kaizer14x # change to your github homepage
+    - https://www.linkedin.com/in/mohamed-mehdi-madani-57080127b/
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-     - https://www.linkedin.com/in/mohamed-mehdi-madani-57080127b/
+    
 
 # Site Verification Settings
 webmaster_verifications:
