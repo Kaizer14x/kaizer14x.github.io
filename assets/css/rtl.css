@@ -1,0 +1,527 @@
+/*
+ * RTL (Right-to-Left) Overrides for jekyll-theme-chirpy
+ *
+ * Loaded conditionally on pages with `direction: rtl` in front matter.
+ * Scoped under [dir="rtl"] to avoid affecting LTR pages.
+ *
+ * Covers: sidebar, topbar, main content, post layout, typography,
+ *         code blocks, TOC, navigation, archives, tags, categories,
+ *         search, and misc components.
+ */
+
+/* ======================
+   Font & Base Direction
+   ====================== */
+
+[dir="rtl"] body {
+  font-family: "Noto Sans Arabic", sans-serif;
+  text-align: right;
+}
+
+[dir="rtl"] .content {
+  font-family: "Noto Sans Arabic", sans-serif;
+}
+
+/* ======================
+   Sidebar
+   ====================== */
+
+/* Sidebar: anchor to the right instead of left */
+[dir="rtl"] #sidebar {
+  right: 0;
+  left: auto;
+  border-right: none;
+  border-left: 1px solid var(--sidebar-border-color, var(--main-border-color));
+  transform: translateX(100%); /* hidden state: slide off to right */
+}
+
+[dir="rtl"] #sidebar.show {
+  transform: translateX(0);
+}
+
+/* Sidebar profile wrapper: flip padding */
+[dir="rtl"] .profile-wrapper {
+  padding-right: 2.5rem;
+  padding-left: 1.25rem;
+}
+
+/* Sidebar nav link icons: flip margin */
+[dir="rtl"] .nav-link i,
+[dir="rtl"] .nav-link .fa,
+[dir="rtl"] .nav-link .fas,
+[dir="rtl"] .nav-link .far,
+[dir="rtl"] .nav-link .fab {
+  margin-left: 1.5rem;
+  margin-right: 0;
+}
+
+/* Sidebar bottom: flip padding */
+[dir="rtl"] .sidebar-bottom {
+  padding-right: 2rem;
+  padding-left: 1rem;
+}
+
+[dir="rtl"] .sidebar-bottom a,
+[dir="rtl"] .sidebar-bottom .mode-toggle {
+  margin-left: var(--sb-btn-gap, 0.8rem);
+  margin-right: 0;
+}
+
+/* ======================
+   Main Wrapper
+   ====================== */
+
+/* Main content area: flip sidebar margin */
+@media (min-width: 992px) {
+  [dir="rtl"] #main-wrapper {
+    margin-right: var(--sidebar-width, 260px);
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1650px) {
+  [dir="rtl"] #main-wrapper {
+    margin-right: var(--sidebar-width-large, 300px);
+    margin-left: 0;
+  }
+}
+
+/* ======================
+   Topbar
+   ====================== */
+
+[dir="rtl"] #topbar-wrapper {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] #breadcrumb {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] #topbar-title {
+  text-align: right;
+}
+
+/* ======================
+   Panel (Side TOC, Trending Tags)
+   ====================== */
+
+[dir="rtl"] #panel-wrapper {
+  padding-right: 2px !important;
+  padding-left: 0 !important;
+}
+
+[dir="rtl"] .access > section {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+/* Panel border: move from left to right */
+[dir="rtl"] #panel-wrapper .access {
+  border-right: 1px solid var(--main-border-color);
+  border-left: none;
+}
+
+/* ======================
+   Post Content - Typography
+   ====================== */
+
+/* Blockquote: flip border from left to right */
+[dir="rtl"] .content blockquote {
+  border-left: none;
+  border-right: 0.125rem solid var(--blockquote-border-color, var(--main-border-color));
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+/* Prompt blockquotes (info, tip, warning, danger) */
+[dir="rtl"] .content .prompt-tip,
+[dir="rtl"] .content .prompt-info,
+[dir="rtl"] .content .prompt-warning,
+[dir="rtl"] .content .prompt-danger {
+  padding: 1rem 3rem 1rem 1rem;
+}
+
+[dir="rtl"] .content .prompt-tip::before,
+[dir="rtl"] .content .prompt-info::before,
+[dir="rtl"] .content .prompt-warning::before,
+[dir="rtl"] .content .prompt-danger::before {
+  left: auto;
+  right: 0.25rem;
+}
+
+/* Lists: flip indentation */
+[dir="rtl"] .content ol,
+[dir="rtl"] .content ul {
+  padding-inline-start: 1.75rem;
+}
+
+[dir="rtl"] .content li {
+  padding-right: 0.25rem;
+  padding-left: 0;
+}
+
+/* Definition lists */
+[dir="rtl"] .content dl > dd {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+/* Footnotes */
+[dir="rtl"] .footnotes > ol {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .footnotes li > p {
+  margin-right: 0.25em;
+  margin-left: 0;
+}
+
+[dir="rtl"] .reversefootnote {
+  margin-right: 0.25em;
+  margin-left: 0;
+}
+
+/* Task list checkboxes */
+[dir="rtl"] .content .task-list-item input[type="checkbox"] {
+  margin: 0 -1.3rem 0.2rem 0.5rem;
+}
+
+[dir="rtl"] .content .task-list-item .fa-check-circle,
+[dir="rtl"] .content .task-list-item .fa-circle {
+  margin-right: -1.25rem;
+  margin-left: 0;
+}
+
+/* Float helpers */
+[dir="rtl"] .content .left {
+  float: right;
+  margin: 0.75rem 0 1rem 1rem;
+}
+
+[dir="rtl"] .content .right {
+  float: left;
+  margin: 0.75rem 1rem 1rem 0;
+}
+
+/* ======================
+   Code Blocks & Syntax Highlighting
+   ====================== */
+
+/* Keep code blocks LTR (code is always LTR) */
+[dir="rtl"] code,
+[dir="rtl"] pre,
+[dir="rtl"] .highlight,
+[dir="rtl"] .highlighter-rouge {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Inline code within RTL text should still flow naturally */
+[dir="rtl"] .content p > code,
+[dir="rtl"] .content li > code,
+[dir="rtl"] .content td > code,
+[dir="rtl"] .content dd > code {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* Line numbers: keep left-aligned */
+[dir="rtl"] .lineno {
+  text-align: right; /* stays right in LTR context since block is LTR */
+}
+
+/* Code header: flip margins */
+[dir="rtl"] .code-header {
+  direction: ltr; /* keep code headers LTR */
+}
+
+/* ======================
+   Post Meta & Tags
+   ====================== */
+
+/* Post tag spacing */
+[dir="rtl"] .post-tag:not(:last-child) {
+  margin-left: 0.2rem;
+  margin-right: 0;
+}
+
+/* Post meta icons */
+[dir="rtl"] .post-meta i,
+[dir="rtl"] .post-meta .fa,
+[dir="rtl"] .post-meta .fas,
+[dir="rtl"] .post-meta .far {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Categories/tags in post tail */
+[dir="rtl"] .post-tail-wrapper .post-meta i.fa-folder-open,
+[dir="rtl"] .post-tail-wrapper .post-tags i.fa-tags {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .post-tail-wrapper .post-meta .far.fa-folder-open.me-1,
+[dir="rtl"] .post-tail-wrapper .post-tags .fa.fa-tags.me-1 {
+  margin-left: 0.5rem !important;
+  margin-right: 0 !important;
+}
+
+/* ======================
+   TOC (Table of Contents)
+   ====================== */
+
+/* TOC sidebar panel links */
+[dir="rtl"] #toc-wrapper a {
+  padding-right: 1.25rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] #toc-wrapper ul {
+  padding-right: 0.75rem;
+  padding-left: 0;
+}
+
+/* TOC wrapper border: flip from left to right */
+[dir="rtl"] #toc-wrapper::after {
+  right: auto;
+  left: -1px;
+  margin-right: 0;
+}
+
+/* TOC bar */
+[dir="rtl"] #toc-bar .label {
+  margin-right: 0.375rem;
+  margin-left: 0;
+}
+
+/* TOC solo trigger button */
+[dir="rtl"] #toc-solo-trigger .label {
+  padding-right: 2px;
+  padding-left: 0;
+}
+
+[dir="rtl"] #toc-solo-trigger .fa-angle-right {
+  transform: scaleX(-1); /* flip the arrow */
+}
+
+/* TOC popup */
+@media (min-width: 992px) {
+  [dir="rtl"] #toc-popup {
+    right: var(--sidebar-width, 260px);
+    left: auto;
+  }
+}
+
+[dir="rtl"] #toc-popup .header .label {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] #toc-popup-content a {
+  padding-left: 1.125rem;
+  padding-right: 0;
+}
+
+/* TOC popup heading indentation (H2, H3, H4) */
+[dir="rtl"] #toc-popup-content li.h2 > a {
+  padding-right: 0;
+}
+
+[dir="rtl"] #toc-popup-content li.h3 > a {
+  padding-right: 1.125rem;
+}
+
+[dir="rtl"] #toc-popup-content li.h4 > a {
+  padding-right: 2.25rem;
+}
+
+/* ======================
+   Post Navigation (Prev/Next)
+   ====================== */
+
+[dir="rtl"] .post-navigation .btn:first-child {
+  border-radius: 0 var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0;
+  left: auto;
+  right: 0.5px;
+}
+
+[dir="rtl"] .post-navigation .btn:last-child {
+  border-radius: var(--bs-border-radius-lg) 0 0 var(--bs-border-radius-lg);
+  right: auto;
+  left: 0.5px;
+}
+
+/* ======================
+   Share Icons
+   ====================== */
+
+[dir="rtl"] .post-tail-bottom .share-wrapper > * {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+/* ======================
+   Archives Timeline
+   ====================== */
+
+[dir="rtl"] .timeline {
+  float: right;
+}
+
+[dir="rtl"] .archives .post-content a {
+  margin-right: 2.5rem;
+  margin-left: 0;
+}
+
+/* Flip timeline positioning elements */
+[dir="rtl"] .archives .post-content::before {
+  right: 21.5px;
+  left: auto;
+}
+
+/* ======================
+   Categories Page
+   ====================== */
+
+[dir="rtl"] .categories .list-group-item {
+  border-right: none;
+  border-left: 1px solid var(--main-border-color);
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+/* ======================
+   Tags Page
+   ====================== */
+
+[dir="rtl"] .tags .tag {
+  margin-left: 0.8rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .tags .tag span {
+  margin-right: 0.6em;
+  margin-left: 0;
+}
+
+/* ======================
+   Search
+   ====================== */
+
+@media (min-width: 1200px) {
+  [dir="rtl"] #search-results {
+    margin-left: 4rem;
+    margin-right: 0;
+  }
+}
+
+[dir="rtl"] #search-results .post-tag {
+  margin: 0 0 1rem 1.25rem;
+}
+
+[dir="rtl"] .search-hints .post-tag::before {
+  padding-left: 0.2rem;
+  padding-right: 0;
+}
+
+/* ======================
+   Home Page Post Cards
+   ====================== */
+
+@media (min-width: 768px) {
+  [dir="rtl"] .post-preview .preview-img {
+    border-radius: var(--bs-border-radius-lg) 0 0 var(--bs-border-radius-lg);
+  }
+}
+
+[dir="rtl"] .post-preview .post-meta i {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Pin icon */
+[dir="rtl"] .pin i {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* ======================
+   Back to Top Button
+   ====================== */
+
+[dir="rtl"] #back-to-top {
+  left: 1rem;
+  right: auto;
+}
+
+@media (min-width: 1200px) {
+  [dir="rtl"] #back-to-top {
+    left: 5%;
+    right: auto;
+  }
+}
+
+/* ======================
+   Pagination
+   ====================== */
+
+[dir="rtl"] .pagination .page-item {
+  margin-left: 0.7rem;
+  margin-right: 0;
+}
+
+/* ======================
+   Bootstrap RTL Utility Overrides
+   (for classes like me-1, ms-2, ps-2, pe-1)
+   Bootstrap RTL CSS handles most of these, but some
+   theme-specific usages may need explicit correction.
+   ====================== */
+
+/* Fix panel padding (ps-2 in LTR = padding-start) */
+[dir="rtl"] #panel-wrapper.ps-2 {
+  padding-right: 0.5rem !important;
+  padding-left: 0 !important;
+}
+
+/* ======================
+   Miscellaneous
+   ====================== */
+
+/* Notification toast: keep centered */
+[dir="rtl"] #notification {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* Category-tag page dot separator */
+[dir="rtl"] .category-tag .post-content::before {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Footer: keep centered */
+[dir="rtl"] footer p {
+  text-align: center;
+}
+
+/* Tooltip: keep consistent */
+[dir="rtl"] .tooltip-inner {
+  text-align: right;
+}
+
+/* Fix Bootstrap me-1/ms-* classes that the theme uses on icons */
+[dir="rtl"] .me-1 {
+  margin-left: 0.25rem !important;
+  margin-right: 0 !important;
+}
+
+[dir="rtl"] .ms-1 {
+  margin-right: 0.25rem !important;
+  margin-left: 0 !important;
+}
