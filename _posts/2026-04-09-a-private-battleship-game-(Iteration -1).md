@@ -1,3 +1,10 @@
+---
+title : "A Private Battleship game (ZK) - Iteration 1"
+categories: [Projects]
+tags: [Privacy Engineering, Field Notes]
+---
+
+
 
 Engineers like to think of their craft as more art than science. Anyone who has been on the front lines of building things can relate the constant attention to detail that a developer gives to a creation to the same attention a craftsman gives to the carpet he is weaving or the sculpture he is perfecting.
 Yet there are two types of "craft." We can label them "operational" and "tactical" if we borrow military terms, or "nitty-gritty" and "big picture" in simpler words. This distinction reflects two kinds of people you may encounter in engineering teams: the detail-obsessed person who likes to learn the internals of every tool he uses, and the one who always questions things philosophically and grabs a piece of paper to draw a diagram.
