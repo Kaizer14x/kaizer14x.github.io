@@ -14,7 +14,7 @@ We will first introduce what we are dealing with, then the objectives and threat
 
 Of course, this blog assume previous exposure about "Zero Knowledge Proofs" and other cryptography concepts, but it doesn't need it heavily after chapter 0.  after all, you can understand art and appreciate (and criticize it) even if you are not an artist. 
 
-## An Introduction to RISC-0 :
+## An Introduction to RISC-0
 
 
 RISC Zero is a zkVM, which means it is a virtual machine that lets us prove that a program ran correctly without asking everyone else to rerun it. In simple terms, we write a program, run it inside the zkVM, and obtain a proof that others can verify. In this project, that is useful because we want to prove game events while keeping the secret board hidden.
@@ -44,7 +44,9 @@ Finally, each proof has what we call an "*Image ID*," which is the Merkle root o
 
 Now that we understand what we would be dealing with "as a tool", let's see what we would be dealing with as concept.
 
-# 1. Game Rules and Disclosure Policy : 
+## Overview
+
+# 1. Game Rules and Disclosure Policy
 
 - We have **two** participants that should have two (10x10) grid, one where he will place his ships and one where he will use it to hit "the opponent".
 	- The placement of ships should be validated, and should not be allowed to change. (*This must be part of the game rules, not of the proving system)
@@ -64,21 +66,25 @@ Now that we understand what we would be dealing with "as a tool", let's see what
 This means the disclosure policy is embedded directly into the rules of play. What remains secret is **the exact relationship between ship locations and ship types until a ship is actually sunk**; more broadly, the unconfirmed structure of the defender's board must stay hidden throughout the game. What must be proved is the correctness of each hit-or-miss declaration and, when relevant, the claim that a ship of a given type has sunk. Some structural inference from the public history of hits is acceptable, because players can naturally learn patterns from previous rounds, but that should never disclose the exact position of ships that are still afloat. Replay attacks and leakage through error messages are concerns for the proof-system mechanics, not the game logic itself. Observers are treated as potential attackers: they may see the attacks, the announcements of sunk ships, and the proofs attached to hit-or-miss outcomes, but they should never see either player's full board.
 
 
-# 2. Proof System and Game Technicalities : 
+# 2. Proof System and Game Technicalities
 
 All in all, the general protocol can be pictured as follows : 
 
 ![Pasted image 20260325195024.png](/assets/img/Pasted%20image%2020260325195024.png)
 
 Before moving forward, We must denote the threats and how would they come to be. This is called threat modelling and it is a crucial step into the making of any protocol.
-It is difficult to do two separate (important) things in the same time, therefore I chose to make this implementation on ==two phases== :
+It is difficult to do two separate (important) things in the same time, therefore I chose to make this implementation on ==two phases==
+## Implementation Phases
+
 1. The **basic proof system**, here we ensure that the proofs are generated and verified correctly. ==players themselves cannot cheat because the game engine prohibit them of doing so, and this is mainly due to the fact that they are running in one process==. the main vulnerability vector is the *memory* of the game, as it can destroy the secrecy if exploited. but we will not concern ourselves with this as **it goes beyond cryptography, although for a real system it must be addressed**.
 2. The **complete system**, and this will come soon. This system should enable "free will" participants, (they can deny or accept the hits) that communicate through a secure channel, enable PvP gameplay. of course we would have an orchestrator that enables the game rounds, but **it will not oblige the players to do something, for instance : a player can position his ship in a incorrect way**, and this will not be accepted after a verification.
 
-Let's start now exploring how each proof should work :
-#### First step -> Populating the Grid 
+## Threat Model and Design Rationale
 
-#### Proof 1 : a valid Grid :
+Let's start now exploring how each proof should work :
+### First Step: Populating the Grid
+
+### Proof 1: A Valid Grid
 
 Each player should prove that his grid is actually correct, which means that we claim that :
 
@@ -104,7 +110,7 @@ By doing that, we actually achieve the two properties needed by a commitment : *
 Now that this is clear, we should think about how we can implement the "attack engine" as part of the "Game Engine" so that we can prove it :
 
 
-#### How can we attack ? 
+### How Can We Attack?
 
 Basically, each player would have a turn where he can direct fire at a specific cell, guessing that a ship must be there (or eliminating this possibility), without seeing the grid of his opponent. 
 To maintain secrecy and help us produce a proof later, we will have "logs" where we can maintain a history of what happened during previous turns. These logs are : 
@@ -122,7 +128,7 @@ A round would proceed as follows :
 
 After an attack is declared on a cell (within range, of course), the proving mechanism is fired : 
 
-#### Proof 2 : A valid Hit (or a sorry miss)
+### Proof 2: A Valid Hit (or a Sorry Miss)
 
 The claim being proven here is: *"The attack at `(x, y)` against my committed board -which I committed to in Round 0- resulted in HIT or MISS."*
 In order to prove that, the defender will provide : 
@@ -147,7 +153,7 @@ Now for the verification :
 We are not finished yet, because we want to tie all this to the next question : "If a ship is hit, was it enough to sink it ?"
 Before we start, bear in mind that : **The game engine would force the defender to claim that a ship sunk, and this claim will be verified**. This is done once a hit is registered and verified.
 
-#### Proof 3 : A fallen fellow (or not)
+### Proof 3: A Fallen Fellow (or Not)
 
 Let's deconstruct what we want : we want to prove that a ship sunk because of a series of hits on its position, or not. These are two different things, and therefore two different claims. 
 The first one is : *"Every cell of ship X has been hit by a distinct shot in the public transcript, against my committed board."* The second one is : *"For each of  the ships still alive on the grid, at least one of its cells has not yet been hit."* 
@@ -177,7 +183,7 @@ The public journal would contain :
 - Already sunk indices match — consistency with prior rounds.
 
 
-#### Proof 4 : Was it the last bullet ? We Won!
+### Proof 4: Was It the Last Bullet? We Won!
 
 Finally, the chain continues : if a ship is registered as sunk, the game engine would force the defender to capitulate and verify the "defeat condition" and, of course, the win for the attacker. The easiest way to verify that we won is to have **17 registered hits, equal to the number of cells**.
 
@@ -194,7 +200,7 @@ Now, when we get into the tactical level, or in other words the implementation l
 
 
 
-# Wrap Up : 
+## Conclusion
 
 This is my first attempt building something while having "a security first" mindset, and also the first attempt (hopefully not the last) building something using Zero Knowledge proofs. 
 There is a lot to make better, there is a lot to learn, but there is enough grit and power to sustain the efforts necessary to become "master of the craft".
