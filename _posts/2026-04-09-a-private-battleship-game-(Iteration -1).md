@@ -73,10 +73,10 @@ All in all, the general protocol can be pictured as follows :
 ![Pasted image 20260325195024.png](/assets/img/Pasted%20image%2020260325195024.png)
 
 Before moving forward, We must denote the threats and how would they come to be. This is called threat modelling and it is a crucial step into the making of any protocol.
-It is difficult to do two separate (important) things in the same time, therefore I chose to make this implementation on ==two phases==
+It is difficult to do two separate (important) things in the same time, therefore I chose to make this implementation **on two phases** :
 ## Implementation Phases
 
-1. The **basic proof system**, here we ensure that the proofs are generated and verified correctly. ==players themselves cannot cheat because the game engine prohibit them of doing so, and this is mainly due to the fact that they are running in one process==. the main vulnerability vector is the *memory* of the game, as it can destroy the secrecy if exploited. but we will not concern ourselves with this as **it goes beyond cryptography, although for a real system it must be addressed**.
+1. The **basic proof system**, here we ensure that the proofs are generated and verified correctly. players themselves cannot cheat because the game engine prohibit them of doing so, and this is mainly due to the fact that they are running in one process. the main vulnerability vector is the *memory* of the game, as it can destroy the secrecy if exploited. but we will not concern ourselves with this as **it goes beyond cryptography, although for a real system it must be addressed**.
 2. The **complete system**, and this will come soon. This system should enable "free will" participants, (they can deny or accept the hits) that communicate through a secure channel, enable PvP gameplay. of course we would have an orchestrator that enables the game rounds, but **it will not oblige the players to do something, for instance : a player can position his ship in a incorrect way**, and this will not be accepted after a verification.
 
 ## Threat Model and Design Rationale
@@ -137,7 +137,7 @@ In order to prove that, the defender will provide :
 These will be received by the zkVM, and the circuit would receive in addition : 
 - The stored commitment C for this player.
 - The attack coordinate `(ax, ay)`.
-- ==The current round number.== (This is a very important information, as a malicious player may attempt "a replay attack").
+- **The current round number.** (This is a very important information, as a malicious player may attempt "a replay attack").
 
 Our circuit would first check that the commitment recomputed from the witness matches C, in order to establish "a chain-of-trust" that ensures the uniqueness of the grid. Then we proceed in the "intuitive way" (because there is no need to get fancy) : for each ship, the circuit derives all cells from its descriptor and checks whether `(ax, ay)` -the attack coordinate- matches any of them. If yes, it is a HIT; otherwise, it is a MISS.
 
