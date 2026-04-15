@@ -22,29 +22,10 @@
   font-family: "Noto Sans Arabic", sans-serif;
 }
 
-/* Center images and figures in RTL posts */
+/* Center images in RTL posts */
 [dir="rtl"] img {
   display: block;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  width: fit-content;
-  max-width: 100%;
-}
-
-/* Center paragraphs containing images */
-[dir="rtl"] p:has(img) {
-  text-align: center;
-}
-
-[dir="rtl"] figure {
-  display: flex;
-  justify-content: center;
-}
-
-[dir="rtl"] figure img {
-  display: block;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  margin: 0 auto;
 }
 
 /* ======================
