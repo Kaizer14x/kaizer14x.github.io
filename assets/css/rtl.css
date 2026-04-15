@@ -27,12 +27,18 @@
   display: block;
   margin-left: auto !important;
   margin-right: auto !important;
+  width: fit-content;
   max-width: 100%;
-  height: auto;
+}
+
+/* Center paragraphs containing images */
+[dir="rtl"] p:has(img) {
+  text-align: center;
 }
 
 [dir="rtl"] figure {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 [dir="rtl"] figure img {
