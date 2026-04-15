@@ -22,6 +22,12 @@
   font-family: "Noto Sans Arabic", sans-serif;
 }
 
+/* Center images in RTL posts */
+[dir="rtl"] img {
+  display: block;
+  margin: 0 auto;
+}
+
 /* ======================
    Sidebar
    ====================== */
