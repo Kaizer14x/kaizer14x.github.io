@@ -23,22 +23,21 @@
 }
 
 /* Right-align images in RTL posts */
-[dir="rtl"] img {
+[dir="rtl"] a.img-link {
   display: block !important;
+  width: fit-content;
   margin-left: auto !important;
   margin-right: 0 !important;
+}
+
+[dir="rtl"] img {
+  display: block !important;
 }
 
 [dir="rtl"] figure {
   margin-left: auto !important;
   margin-right: 0 !important;
   text-align: right;
-}
-
-[dir="rtl"] p > img:only-child {
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: 0 !important;
 }
 
 /* ======================
