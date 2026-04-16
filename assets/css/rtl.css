@@ -22,10 +22,11 @@
   font-family: "Noto Sans Arabic", sans-serif;
 }
 
-/* Center images in RTL posts */
+/* Right-align images in RTL posts */
 [dir="rtl"] img {
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 /* ======================
