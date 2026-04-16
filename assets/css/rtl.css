@@ -22,12 +22,12 @@
   font-family: "Noto Sans Arabic", sans-serif;
 }
 
-/* Right-align images in RTL posts */
+/* Left-align images in RTL posts (images remain LTR) */
 [dir="rtl"] a.img-link {
   display: block !important;
   width: fit-content;
-  margin-left: auto !important;
-  margin-right: 0 !important;
+  margin-right: auto !important;
+  margin-left: 0 !important;
 }
 
 [dir="rtl"] img {
@@ -35,9 +35,9 @@
 }
 
 [dir="rtl"] figure {
-  margin-left: auto !important;
-  margin-right: 0 !important;
-  text-align: right;
+  margin-right: auto !important;
+  margin-left: 0 !important;
+  text-align: left;
 }
 
 /* ======================
