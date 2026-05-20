@@ -34,7 +34,7 @@ To cover these hypothesis (which can be enumerated but not simulated), and the o
 A doctrine is a playbook, not a "must do" list. It should be the naturel reaction to an event, but it can change if the soldier/leader judges it necessary (which require a rational that exists rarely under a torrent of bullets);
 
 
-![Pasted image 20260302132250.png](/assets/img/rajesh-jagtap-war-planning.png)
+![Pasted image 20260302132250.png](/assets/img/rajesh-jagtap-war-planning.jpg)
 
 
 ### The Intersection: a doctrine for agentic "soldiers" 
