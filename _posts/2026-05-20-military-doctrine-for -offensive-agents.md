@@ -1,5 +1,5 @@
 ---
-title : "A Military Doctrine for offensive Agents - a proposal"
+title : "A Doctrine for Cyber offensive Agents - a proposal"
 categories: [Projects]
 tags: [Agentic Hacking, Ideas]
 ---
