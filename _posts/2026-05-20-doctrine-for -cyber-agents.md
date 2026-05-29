@@ -1,5 +1,5 @@
 ---
-title : "A Military Doctrine for offensive Agents - a proposal"
+title : "A Doctrine for Cyber offensive Agents - a proposal"
 categories: [Projects]
 tags: [Agentic Hacking, Ideas]
 ---
@@ -18,7 +18,7 @@ for instance, a program context must be finite and "known" before execution. The
 This is very hard for human interactions that involve **unknown** variables and an unpredictable events. For example, often people fail to explain why did their emotions changed in regard to one person, or their "hunch" about an answer in an exam. Not because they lake more "data" or "insight" about their lives but because these emotions and thoughts are not yet produced by a mechanism that we understand, but rather we see their effects on the brain and the hormones 
 
 2. Because we have visibility about the extent of this machine and its output, the paths that to be taken can be **enumerated** and **analysed** with high precision.
-In other words, AI can find the best outcome in the digital maze because they are of the same "finite" nature. this make it logical to understand the high quality of code (that is today hard to distinguish from the output of a senior engineer) comparable to the laughable slop that you will get if you asked a chatbot to write a poem, as the latter condense an experience and ideas that the AI cannot contextualize by definition.
+In other words, AI can find the best outcome in the digital maze because they are of the same "finite" nature. this make it logical to understand the improving quality of code (that is today hard to distinguish from the output of a senior engineer , if **well used**) comparable to the laughable slop that you will get if you asked a chatbot to write a poem, as the latter condense an experience and ideas that the AI cannot contextualize by definition.
 
 But AI is still a human product that mirrors the human experience, or in the other words : Analogies of reality can work well on AI if defined within its own constraints and "logic".
 
