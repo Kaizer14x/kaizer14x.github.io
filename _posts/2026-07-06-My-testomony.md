@@ -1,7 +1,7 @@
 ---
 title : "وصيتي لكم - دروس على الهامش"
 categories: [Essays]
-tags: []
+tags: [general-knowledge]
 direction: rtl
 ---
 
